@@ -5,21 +5,24 @@ import "./App.css";
 class App extends React.Component{
 
   constructor(props){
-    
+    super(props);
+    this.state = {
+      list : []
+    }
   }
   
   render(){
     return (
-      <div className="App">
+      <div className="app-container">
         
-        <header className="App-header">
+        <header className="app-title">
   
-          <img src={logo} className="App-logo"/>
-          <p>Setup a Project</p>
-  
+          <h1>Project-Action</h1>
+
         </header>
   
   
+        <footer className="app-text-light app-centralize app-bottom">VGG: Project-Action</footer>
       </div>
     );
   

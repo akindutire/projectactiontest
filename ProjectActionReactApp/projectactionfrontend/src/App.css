@@ -2,7 +2,31 @@ body{
   background: #3f51b5 ;
 }
 
+.app-container{
+  height: auto;
+  margin: 0px 0px;
+  padding: 4px 16px;
+  position: relative;
+}
+
 .app-title {
   font-size: 1.5rem;
   text-align: center;
+  color: #ffffff;
+}
+
+.app-centralize{
+  text-align: center;
+}
+
+.app-bottom{
+  bottom: 0px;
+}
+
+.app-text-light{
+  color: #ffffff;
+}
+
+.app-text-dark{
+  color: #000000;
 }
