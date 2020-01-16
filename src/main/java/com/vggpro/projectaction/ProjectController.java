@@ -6,19 +6,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vggpro.projectaction.repositories.ProjectRepository;
+import com.vggpro.projectaction.entities.Project;
+
+
+
 @RestController
 public class ProjectController {
-
-	private Project[] pro;
 	
 	@Autowired
-	private Project Pr;
-
-	
+	ProjectRepository ProRepo;
 	
 	@RequestMapping("/project/all")
-	public String showAllProjects() {
-		return "FF";
+	public Iterable<Project> showAllProjects() {
+
+		return ProRepo.findAll();
 	}
 	
 	@RequestMapping("/projects/create")

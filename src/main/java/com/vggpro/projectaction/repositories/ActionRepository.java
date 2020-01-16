@@ -3,10 +3,9 @@ package com.vggpro.projectaction.repositories;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.vggpro.projectaction.entities.Project;
+import com.vggpro.projectaction.entities.Action;
 
-
-@Repository("ProjectRepository")
-public interface ProjectRepository extends CrudRepository<Project, Integer>{
+@Repository("ActionRepository")
+public interface ActionRepository extends CrudRepository<Action, Integer>{
 
 }
