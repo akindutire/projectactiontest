@@ -2,7 +2,7 @@ package com.vggpro.projectaction;
 
 import org.springframework.stereotype.Component;
 
-@Component
+
 public class Project {
 
 	private int id;
