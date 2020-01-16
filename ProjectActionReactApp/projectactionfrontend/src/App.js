@@ -1,7 +1,7 @@
 import React from 'react';
-import logo from "./logo.svg";
-import "./App.css";
 import axios from 'axios';
+import "./App.css";
+
 
 
 class App extends React.Component{
@@ -14,7 +14,7 @@ class App extends React.Component{
   }
 
   componentDidMount(){
-    axios.get('localhost:8081/project/all')
+    axios.get('http://localhost:8081/project/all', { 'headers': { 'Access-Control-Allow-Origin': '*' } })
     .then( (response) => {
       this.setState({
         projects: response.data
@@ -22,7 +22,7 @@ class App extends React.Component{
       console.log(response);
     } )
     .catch( err => {
-      alert(err);
+      console.log(err);
     })
   }
 
