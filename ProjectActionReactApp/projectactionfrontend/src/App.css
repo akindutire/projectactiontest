@@ -1,7 +1,10 @@
 body{
-  background: #3f51b5 ;
+  background: #1a237e;
 }
-
+.row{
+  margin-left: 0px;
+  margin-right: 0px;
+}
 .app-container{
   height: auto;
   margin: 0px 0px;
@@ -13,6 +16,7 @@ body{
   font-size: 1.5rem;
   text-align: center;
   color: #ffffff;
+  border-bottom: 1px solid #3f51b5 ;
 }
 
 .app-centralize{
@@ -29,4 +33,7 @@ body{
 
 .app-text-dark{
   color: #000000;
+}
+.btn-light-blue{
+  background: #c5cae9;
 }
