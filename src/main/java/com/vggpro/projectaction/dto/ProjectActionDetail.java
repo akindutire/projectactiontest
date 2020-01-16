@@ -1,28 +1,21 @@
-package com.vggpro.projectaction.entities;
+package com.vggpro.projectaction.dto;
+
+import javax.persistence.Entity;
+
+import org.springframework.stereotype.Component;
+
+import com.vggpro.projectaction.entities.Action;
 
 import java.util.List;
+@Component
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+public class ProjectActionDetail {
 
-@Entity
-@Table(name = "projects")
-public class Project {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
 	private String description;
 	private boolean completed;
-	
-
+	private List action;
 	
 	public int getId() {
 		return id;
@@ -48,6 +41,13 @@ public class Project {
 	public void setCompleted(boolean completed) {
 		this.completed = completed;
 	}
+	public List getAction() {
+		return action;
+	}
+	public void setAction(List action) {
+		this.action = action;
+	}
+	
 	
 	
 }
