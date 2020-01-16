@@ -66,7 +66,7 @@ class App extends React.Component{
                         <hr/>
                         <b>Actions</b>
                         {
-                          actions.map( action => {
+                          project.action.map( action => {
 
                               return(
                                 <p className="card-text"><b>{action.id}:</b> {action.description}</p>

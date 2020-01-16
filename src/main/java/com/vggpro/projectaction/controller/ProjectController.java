@@ -1,5 +1,6 @@
 package com.vggpro.projectaction.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import java.util.Optional;
@@ -27,6 +28,8 @@ import com.vggpro.projectaction.entities.*;
 @RestController
 public class ProjectController {
 	
+	List<ProjectActionDetail> ProDtlList = new ArrayList<ProjectActionDetail>();
+	
 	@Autowired
 	ProjectRepository ProRepo;
 	@Autowired
@@ -36,8 +39,30 @@ public class ProjectController {
 	
 	@RequestMapping("/project/all")
 	@ResponseBody
-	public List<Project> showAllProjects() {
-		return (List<Project>) ProRepo.findAll();
+	public ResponseEntity<List<ProjectActionDetail>> showAllProjects() {
+		
+		
+		for(Project p: ProRepo.findAll()) {
+			
+			ProjectActionDetail PDtl = new ProjectActionDetail();
+			
+			PDtl.setId(p.getId());
+			PDtl.setName(p.getName());
+			PDtl.setDescription(p.getDescription());
+			PDtl.setCompleted(p.isCompleted());
+			
+			List a = ActRepo.getSetOfActionsForAProject(p.getId());
+			
+			PDtl.setAction(a);
+			
+			
+			this.ProDtlList.add(PDtl);
+		}
+		
+		
+		
+		return new ResponseEntity<List<ProjectActionDetail>>(ProDtlList, HttpStatus.OK);
+		
 	}
 	
 	@RequestMapping("/project/action/{project_id}")
