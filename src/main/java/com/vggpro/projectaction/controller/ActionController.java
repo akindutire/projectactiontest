@@ -36,7 +36,8 @@ public class ActionController {
 	@PostMapping("/action/create/{project_id}")
 	public ResponseEntity<Action> createAnActionForAProject(@PathVariable("project_id") int project_id, @Valid  @RequestBody Action action) {
 		
-			if( ProRepo.existsById(project_id) ) {
+			if( ProRepo.existsById(project_id) || project_id > 0) {
+				action.setProject_id(project_id);
 				ActRepo.save(action);
 				return new ResponseEntity<Action>(action, HttpStatus.OK);
 
