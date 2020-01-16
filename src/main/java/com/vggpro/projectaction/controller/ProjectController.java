@@ -28,7 +28,6 @@ import com.vggpro.projectaction.entities.*;
 @RestController
 public class ProjectController {
 	
-	List<ProjectActionDetail> ProDtlList = new ArrayList<ProjectActionDetail>();
 	
 	@Autowired
 	ProjectRepository ProRepo;
@@ -41,6 +40,7 @@ public class ProjectController {
 	@ResponseBody
 	public ResponseEntity<List<ProjectActionDetail>> showAllProjects() {
 		
+		List<ProjectActionDetail> ProDtlList = new ArrayList<ProjectActionDetail>();
 		
 		for(Project p: ProRepo.findAll()) {
 			
@@ -54,12 +54,10 @@ public class ProjectController {
 			List a = ActRepo.getSetOfActionsForAProject(p.getId());
 			
 			PDtl.setAction(a);
+		
 			
-			
-			this.ProDtlList.add(PDtl);
+			ProDtlList.add(PDtl);
 		}
-		
-		
 		
 		return new ResponseEntity<List<ProjectActionDetail>>(ProDtlList, HttpStatus.OK);
 		
