@@ -24,10 +24,6 @@ class Projects extends React.Component{
           console.log(err);
         })
       }
-    
-      openProjectDetails(){
-        alert("Clicked");
-      };
 
     render(){
 
@@ -60,6 +56,17 @@ class Projects extends React.Component{
                       <div className="card-body">
                         <h5 className="card-title">{project.name}</h5>
                         <div className="card-text">{project.description}</div>
+                        
+                        <div className="card-text">
+                          {
+                            project.isCompleted 
+                            ? 
+                            <span className="badge badge-success badge-sm">Completed</span>
+                            :
+                            <span className="badge badge-warning badge-sm">Pending</span>  
+                          }
+                        </div>
+
                         <hr/>
                         <b>Actions</b>
                         {
@@ -67,14 +74,14 @@ class Projects extends React.Component{
                             project.action.map( (action, i) => {
 
                                 return(
-                                  <p className="card-text" key={action.id}><b>{action.id}:</b> {action.description}</p>
+                                  <p className="card-text" key={action.id}><b>{i+1}:</b> {action.description}</p>
                                 );
 
                             })
                           : null
                         }
 
-                        <Link to={`/project/detail/${project.id}`} onClick={this.openProjectDetails} className="btn btn-light-blue btn-block">Open</Link>
+                        <Link to={`/project/detail/${project.id}`} className="btn btn-light-blue btn-block">Open</Link>
                       </div>
                     </div>
                   </div>

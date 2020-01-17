@@ -9,36 +9,63 @@ class ProjectDetail extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            project : []
+            project : {},
+            isLoading: true
           }
 
-          this.addAction.bind(this);
+          this.id = props.match.params.id;
+          this.addAction = this.addAction.bind(this);
     }
 
     addAction(event){
 
         event.preventDefault();
 
+        let isc = false;
+        if(this.iscompleted.value == "on")
+            isc = true;
+
+        let data = {
+            description: this.description.value,
+            note: this.note.value,
+            completed : isc
+        }
+
+
+        axios.post(`http://localhost:8081/action/create/${this.id}`, data)
+        .then( (response) => {
+
+            this.fetchProject();
+            alert("Added");
+        })
+        .catch( err => {
+            console.log(err);
+        } );
     }
 
-    componentWillMount(){
-        axios.get('http://localhost:8081/project/all')
+    fetchProject(){
+        axios.get(`http://localhost:8081/project/view/${this.id}`)
         .then( (response) => {
           this.setState({
-            projects: response.data
+            project: response.data,
+            isLoading: false
           });
           console.log(response);
         } )
         .catch( err => {
           console.log(err);
         })
-      }
+    }
+
+    componentWillMount(){
+        this.fetchProject();    
+    }
     
       
 
     render(){
 
-        const { project } = this.state;
+        const { project, isLoading } = this.state;
         
     
         return(
@@ -47,16 +74,27 @@ class ProjectDetail extends React.Component{
         
                 <header className="app-title p-4 mb-3">
         
-                <h1>{project.name}</h1>
+                {
 
+                    this.state.isLoading == false 
+                    ? 
+                    <h1>{project.name}</h1>
+                    :
+                    null
+                }
                 </header>
     
                 <main className="container">
                     <div className="row mt-4">
                         
                             
+                            { 
+                            
+                                this.state.isLoading == false 
                                 
-                                <div className="col-sm-12 col-md-8 offset-col-md-2">
+                                ? 
+                                
+                                <div className="col-sm-12 col-md-12">
                                     <div className="card">
                                     <div className="card-body">
                                         <h5 className="card-title">{project.name}</h5>
@@ -64,33 +102,62 @@ class ProjectDetail extends React.Component{
                                         <hr/>
                                         <b>Actions</b>
                                         {
-                                        project.action.map( action => {
+                                            project.action.length > 0 
+                                            ?    
+                                            project.action.map( (action, i) => {
 
-                                            return(
-                                                <p className="card-text"><b>{action.id}:</b> {action.description}</p>
-                                            );
+                                                return(
+                                                    <p className="card-text">
+                                                        <b>{i+1} </b> 
+                                                        
+                                                        {
+                                                            action.completed 
+                                                            ? 
+                                                            <span className="badge badge-success badge-sm">Completed</span>
+                                                            :
+                                                            <span className="badge badge-warning badge-sm">Pending</span>  
+                                                        }
 
-                                        })
+                                                        &nbsp;:&nbsp;
+
+                                                        {action.description} ({action.note})
+                                                        
+                                                    </p>
+                                                );
+
+                                            })
+                                            :
+                                            null
                                         }
+
+                                        <hr/>
 
                                         <form onSubmit={this.addAction}>
                                             <div className="form-group">
-                                                <input className="form-control" type="text" placeholder="description" ref={ input => this.description = input  }/>
+                                                <input className="form-control" type="text" placeholder="description" ref={ description => this.description = description  }/>
                                             </div>
                                             <div className="form-group">
-                                                <input className="form-control" type="text" placeholder="note" ref={ input => this.note = input }/>
+                                                <input className="form-control" type="text" placeholder="note" ref={ note => this.note = note }/>
                                             </div>
-                                            <div className="form-group">
-                                                <input className="form-control" type="checkbox" ref={ input => this.note = input  }/> 
-                                                <label className="form-label">is Completed</label>
+                                            <div className="form-check">
+                                                <input className="form-check-input" type="checkbox" ref={ iscompleted => this.iscompleted = iscompleted  }/> 
+                                                <label className="form-check-label">is Completed</label>
                                             </div>
-                                            
+                                            <p className="text-center">
+                                                <button type="submit" className="btn btn-sm btn-warning">Add</button>
+                                            </p>
                                         </form>
 
                                     </div>
                                     </div>
-                                </div>
-                            );
+                                </div> 
+                                
+                                : 
+                                
+                                <p className="text-center lead display-4 text-light col-sm-12">Waiting for server...</p>
+                            
+                            }
+            );
                         
                         
                         
