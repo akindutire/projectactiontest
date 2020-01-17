@@ -1,0 +1,16 @@
+com\vggpro\projectaction\configurations\SQLiteDialect$4.class
+com\vggpro\projectaction\entities\Action.class
+com\vggpro\projectaction\dto\ProjectActionDetail.class
+com\vggpro\projectaction\ProjectactionApplication.class
+com\vggpro\projectaction\controller\ProjectController.class
+com\vggpro\projectaction\configurations\SQLiteDialect$3.class
+com\vggpro\projectaction\configurations\SQLiteDialect$SQLiteUniqueDelegate.class
+com\vggpro\projectaction\configurations\SQLiteDialect$1.class
+com\vggpro\projectaction\ProjectactionApplication$1.class
+com\vggpro\projectaction\entities\Project.class
+com\vggpro\projectaction\configurations\SQLiteDialect$2.class
+com\vggpro\projectaction\repositories\ProjectRepository.class
+com\vggpro\projectaction\configurations\SQLiteDialect.class
+com\vggpro\projectaction\Project.class
+com\vggpro\projectaction\controller\ActionController.class
+com\vggpro\projectaction\repositories\ActionRepository.class
