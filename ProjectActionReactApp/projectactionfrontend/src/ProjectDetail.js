@@ -32,7 +32,7 @@ class ProjectDetail extends React.Component{
         }
 
 
-        axios.post(`http://localhost:8081/action/create/${this.id}`, data)
+        axios.post(`https://localhost:8443/action/create/${this.id}`, data)
         .then( (response) => {
 
             this.fetchProject();
@@ -44,7 +44,7 @@ class ProjectDetail extends React.Component{
     }
 
     fetchProject(){
-        axios.get(`https://vgg-project-action-backend.herokuapp.com/project/view/${this.id}`)
+        axios.get(`https://localhost:8443/project/view/${this.id}`)
         .then( (response) => {
           this.setState({
             project: response.data,
