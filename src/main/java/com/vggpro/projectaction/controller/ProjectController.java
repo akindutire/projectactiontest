@@ -38,10 +38,19 @@ public class ProjectController {
 	@Autowired
 	ProjectActionDetail ProDtl;
 	
+	@RequestMapping("/")
+	@ResponseBody
+	public ResponseEntity<List<ProjectActionDetail>> home() {
+		return this.showAllPro();
+	}
+	
 	@RequestMapping("/project/all")
 	@ResponseBody
 	public ResponseEntity<List<ProjectActionDetail>> showAllProjects() {
-		
+		return this.showAllPro();
+	}
+	
+	private  ResponseEntity<List<ProjectActionDetail>> showAllPro() {
 		List<ProjectActionDetail> ProDtlList = new ArrayList<ProjectActionDetail>();
 		
 		for(Project p: ProRepo.findAll()) {
