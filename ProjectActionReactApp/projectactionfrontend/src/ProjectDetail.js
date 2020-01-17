@@ -44,7 +44,7 @@ class ProjectDetail extends React.Component{
     }
 
     fetchProject(){
-        axios.get(`http://localhost:8081/project/view/${this.id}`)
+        axios.get(`https://vgg-project-action-backend.herokuapp.com/project/view/${this.id}`)
         .then( (response) => {
           this.setState({
             project: response.data,

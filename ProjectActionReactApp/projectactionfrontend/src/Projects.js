@@ -13,7 +13,7 @@ class Projects extends React.Component{
     }
 
     componentWillMount(){
-        axios.get('http://localhost:8081/project/all')
+        axios.get('https://vgg-project-action-backend.herokuapp.com/project/all')
         .then( (response) => {
           this.setState({
             projects: response.data
