@@ -11,7 +11,7 @@
 	<groupId>com.vggpro</groupId>
 	<artifactId>projectaction</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>projectaction</name>
 	<description>Projects and actions on them</description>
 
