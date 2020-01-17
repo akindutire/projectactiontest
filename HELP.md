@@ -24,3 +24,4 @@ The following holds with this application locally
 *	cd to "ProjectActionReactApp/projectactionfrontend"
 *	run npm start on your terminal
 *	Goto your browser and hit localhost:3000
+*	If error exist change endpoints base_url to https://localhost:8443 and reload
